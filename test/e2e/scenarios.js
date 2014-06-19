@@ -12,26 +12,26 @@ describe('my app', function() {
             expect(url.split('#')[1]).toBe('/contacts');
         });
     });
-/*
+
   it('should automatically redirect to /contacts when location hash/fragment is empty', function() {
     expect(browser.getLocationAbsUrl()).toMatch("/contacts");
   });
 
 
-  describe('contacts', function() {
+  describe('ContactDetailView', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/contacts');
+      browser.get('#/contacts/1');
     });
 
 
-    it('should render contacts when user navigates to /contacts', function() {
-      expect(element.all(by.css('[ng-view] li')).first().getText()).
+    it('should render contacts when user navigates to contact detail page', function() {
+      expect(element.all(by.css('h1')).first().getText()).
         toMatch(/Lonnie Jackson/);
     });
 
   });
-  */
+
 /*
 
   describe('view2', function() {

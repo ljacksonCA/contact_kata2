@@ -2,8 +2,38 @@
 
 /* Services */
 
+var contactServices = angular.module('contactServices', []);
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+contactServices.value('version', '0.1');
+
+contactServices.factory('storageService', ['$log', function ($log) {
+        var service = {
+            get: function(key) {
+                var value = localStorage.getItem(key);
+                $log.debug('Local Storage: Retrieved key: ' + key + ', value: ' + value);
+                if (value && value != 'undefined') {
+                    return angular.fromJson(value);
+                }
+                return null;
+            },
+
+            set: function(key,value) {
+                var storeValue = angular.toJson(value);
+                localStorage.setItem(key, storeValue);
+                $log.debug('Local Storage: Stored key: ' + key + ', value: ' + storeValue);
+            },
+
+            remove: function(key) {
+                localStorage.removeItem(key);
+                $log.debug('Local Storage: Removed key: ' + key);
+            },
+
+            has: function(key) {
+                var hasItem = localStorage.getItem(key);
+                $log.debug('Local Storage: Contains key: ' + key + ', result: ' + hasItem);
+                return (hasItem) ? true : false;
+            }
+        };
+
+        return service;
+    }]);

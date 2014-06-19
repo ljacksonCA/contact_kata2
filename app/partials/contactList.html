@@ -1,5 +1,7 @@
-<div>
-    <ul>
+<div style="padding: 20px">
+    <h1>My Contacts</h1>
+    <a style="margin: 5px 0 15px 0" class="btn btn-info" href="#/add">Add New Contact</a>
+    <ul class="contactList">
         <li ng-repeat="contact in contacts">
             <a href="#/contacts/{{contact.id}}">{{contact.name}}</a>
         </li>

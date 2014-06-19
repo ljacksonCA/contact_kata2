@@ -28,3 +28,19 @@
   content: "";
   padding: 0;
 }
+
+.contactList li {
+    border: 1px solid #0000FF;
+    border-radius: 5px;
+    margin: 5px 0 5px -25px;
+    padding: 5px;
+    width: 300px;
+    list-style-type: none;
+}
+
+.detail {
+    border: 1px solid #0000FF;
+    border-radius: 5px;
+    padding: 5px 0 5px 15px;
+    width: 500px;
+}
