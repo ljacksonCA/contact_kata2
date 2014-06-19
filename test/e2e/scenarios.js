@@ -4,8 +4,6 @@
 
 describe('my app', function() {
 
-  //browser.get('index.html');
-
     it('should redirect index.html to index.html#/contacts', function() {
         browser.get('index.html');
         browser.getLocationAbsUrl().then(function(url) {
@@ -13,39 +11,34 @@ describe('my app', function() {
         });
     });
 
-  it('should automatically redirect to /contacts when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/contacts");
-  });
-
-
-  describe('ContactDetailView', function() {
-
-    beforeEach(function() {
-      browser.get('#/contacts/1');
+    it('should automatically redirect to /contacts when location hash/fragment is empty', function() {
+        expect(browser.getLocationAbsUrl()).toMatch("/contacts");
     });
 
 
-    it('should render contacts when user navigates to contact detail page', function() {
-      expect(element.all(by.css('h1')).first().getText()).
-        toMatch(/Lonnie Jackson/);
+    describe('ContactDetailView', function() {
+
+        beforeEach(function() {
+          browser.get('#/contacts/0');
+        });
+
+        it('should render contacts when user navigates to contact detail page', function() {
+            expect(element.all(by.css('h1')).first().getText()).toMatch('');
+        });
+
     });
 
-  });
+    describe('AddContactView', function() {
 
-/*
+        beforeEach(function() {
+            browser.get('#/add');
+        });
 
-  describe('view2', function() {
+        it('should redirect to contact detail page after save', function() {
+            element(by.model('nameBox')).sendKeys('Tom Smith');
+            element(by.css('#saveBtn')).click();
+            expect(browser.getLocationAbsUrl()).toMatch("#/contacts");
+        });
 
-    beforeEach(function() {
-      browser.get('index.html#/view2');
     });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
-    });
-
-  });
-  */
 });

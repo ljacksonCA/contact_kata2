@@ -1,11 +1,16 @@
 
 <div style="padding: 20px">
     <h1>Edit Contact</h1>
+
     <label for="nameBox" class="label badge-info">Name:</label><br/>
     <input type="text" id="nameBox" ng-model="nameBox"><br/>
+
     <label for="phoneBox" class="label badge-info">Phone:</label><br/>
     <input type="text" id="phoneBox" ng-model="phoneBox"><br/>
+
     <label for="addressBox" class="label badge-info">Address:</label><br/>
     <input type="text" id="addressBox" ng-model="addressBox"><br/>
-    <button class="btn-info" ng-click="updateContact()" id="saveBtn">Save</button>
+
+    <a id="saveBtn" style="margin: 5px 0 15px 0" class="btn btn-info" href="" ng-click="updateContact()">Save</a>
+    <a style="margin: 5px 0 15px 15px" class="btn btn-info" href="#/contacts/{{contact.id}}">Cancel</a>
 </div>

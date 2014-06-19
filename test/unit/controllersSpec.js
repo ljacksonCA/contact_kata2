@@ -5,37 +5,32 @@
 describe('controllers', function(){
 
     describe('ContactListCtrl', function() {
-        var scope, ctrl, $httpBackend;
+        var scope, ctrl;
 
-        beforeEach(module('contactControllers'));
+        beforeEach(module('contactControllers', 'contactServices'));
 
-        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-            $httpBackend = _$httpBackend_;
-            $httpBackend.expectGET('contacts/contacts.json').respond([
-                {name: 'Joe'},
-                {name: 'Tom'},
-                {name: 'Bob'}
-            ]);
-            scope = $rootScope.$new();
-            ctrl = $controller('ContactListCtrl', {$scope:scope});
+        beforeEach(inject(function($controller, storageService) {
+            scope = {};
+            storageService.set('idCounter',3);
+            storageService.set('1',1);
+            storageService.set('2',1);
+            storageService.set('3',1);
+            ctrl = $controller('ContactListCtrl', { $scope:scope, storageService:storageService });
         }));
 
-        it('should have a controller ContactListCtrl', inject(function($controller) {
-            //spec body
-            var myCtrl1 = $controller('ContactListCtrl', { $scope:scope });
-            expect(myCtrl1).toBeDefined();
-        }));
 
-        it('should have 2 contacts', inject(function($controller) {
-            expect(scope.contacts).toBeUndefined();
-            $httpBackend.flush();
+        it('should have a controller ContactListCtrl', function() {
+            expect(ctrl).toBeDefined();
+        });
+
+        it('should have 3 contacts', function() {
             expect(scope.contacts.length).toBe(3);
-        }));
+        });
     });
 
     describe('ContactDetailCtrl', function() {
 
-        beforeEach(module('contactControllers', 'ngRoute'));
+        beforeEach(module('contactControllers', 'ngRoute', 'contactServices'));
 
         it('should have a controller ContactDetailCtrl', inject(function($controller, $routeParams) {
             //spec body

@@ -7,7 +7,8 @@ var contactControllers = angular.module('contactControllers', []);
 contactControllers.controller('ContactListCtrl', ['$scope', 'storageService',
     function($scope, storageService) {
         var data = [];
-        var counter = storageService.get('idCounter');
+        //var counter = storageService.get('idCounter');
+        var counter = localStorage.length -1;
 
         for (var i =0; i < counter; i++) {
             data.push(storageService.get(i));
@@ -23,8 +24,8 @@ contactControllers.controller('ContactDetailCtrl', ['$scope', '$routeParams', 's
     }]
 );
 
-contactControllers.controller('AddPersonCtrl', ['$scope', 'storageService',
-    function($scope, storageService) {
+contactControllers.controller('AddPersonCtrl', ['$scope', 'storageService', '$window',
+    function($scope, storageService, $window) {
         $scope.addContact = function() {
             if (!storageService.has('idCounter')) {
                 storageService.set('idCounter', 0);
@@ -40,6 +41,7 @@ contactControllers.controller('AddPersonCtrl', ['$scope', 'storageService',
 
             storageService.set(id, info);
             storageService.set('idCounter', id + 1);
+            $window.location.href = '#/contacts/';
         };
     }]
 );
