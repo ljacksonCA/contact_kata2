@@ -41,6 +41,7 @@ describe('controllers', function(){
     });
 
     describe('ContactDetailCtrl', function() {
+        
         var scope, ctrl, storage;
         var rp, data;
 
