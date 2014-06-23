@@ -43,11 +43,11 @@ describe('controllers', function(){
     describe('ContactDetailCtrl', function() {
         
         var scope, ctrl, storage;
-        var rp, data;
+        var rp, data, wY;
 
         beforeEach(module('contactControllers', 'ngRoute', 'contactServices'));
 
-        beforeEach(inject(function($controller, storageService, $routeParams) {
+        beforeEach(inject(function($controller, storageService, $routeParams, $window) {
             scope = {};
             data = [
                 {
@@ -74,10 +74,19 @@ describe('controllers', function(){
             rp = {
                 "contactId": 2
             };
+            wY = {
+                confirm: function(msg) {
+                    return true;
+                },
+                location: {
+                    href: '#/contacts/'
+                }
+            };
             ctrl = $controller('ContactDetailCtrl', {
                                     $scope:scope,
                                     $routeParams: rp,
-                                    storageService:storage
+                                    storageService:storage,
+                                    $window:wY
                                 });
         }));
 
