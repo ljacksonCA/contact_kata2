@@ -29,7 +29,7 @@ contactControllers.controller('ContactDetailCtrl', ['$scope', '$routeParams', 's
         }
 
         $scope.removeContact = function() {
-            var confirmation = confirm("Are you sure you want to delete " + $scope.contact.name + "?");
+            var confirmation = $window.confirm("Are you sure you want to delete " + $scope.contact.name + "?");
 
             if (confirmation) {
                 if (contactIndex >= 0) {
